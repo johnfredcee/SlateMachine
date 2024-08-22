@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "SlateMachine",
+	"Description": "State Machine Plugin for Unreal Graph Tutotrial",
+	"Category": "Other",
+	"CreatedBy": "John Connors",
+	"CreatedByURL": "https://johnfredcee.github.io/",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "SlateMachine",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
