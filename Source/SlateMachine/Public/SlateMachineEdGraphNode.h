@@ -11,7 +11,7 @@
  * Editor Node Object that represents a state machine state
  */
 UCLASS()
-class SLATEMACHINE_API USlateMachineEdGrpahNode : public UEdGraphNode
+class SLATEMACHINE_API USlateMachineEdGraphNode : public UEdGraphNode
 {
     GENERATED_BODY()
 };
