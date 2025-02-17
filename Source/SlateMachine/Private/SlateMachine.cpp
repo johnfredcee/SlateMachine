@@ -8,6 +8,7 @@
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
+#include "Widgets/SBoxPanel.h"
 #include "Widgets/Text/STextBlock.h"
 #include "ToolMenus.h"
 
@@ -63,41 +64,35 @@ TSharedRef<SDockTab> FSlateMachineModule::OnSpawnPluginTab(const FSpawnTabArgs& 
 	return SNew(SDockTab)
 		.TabRole(ETabRole::NomadTab)
 		[
-			// Put your tab content here!
-			SNew(SBox)
-			.HAlign(HAlign_Center)
-			.VAlign(VAlign_Center)
+			SNew(SSplitter)
+			.PhysicalSplitterHandleSize(10.0f)  
+			.Orientation(EOrientation::Orient_Horizontal)
+			+SSplitter::Slot()
+			.Value(0.7f)
 			[
-
-			    SNew(SSplitter)
-			    .PhysicalSplitterHandleSize(10.0f)  
-			    .Orientation(EOrientation::Orient_Horizontal)
-                +SSplitter::Slot()
-			    [
-			        SNew(SBorder)
-			        [
-			            SNew(SBox)
-                        .MinDesiredWidth(300.0f)
-                        [
-                            SNew(STextBlock)
-                            .Justification(ETextJustify::Left)
-                            .Text(LOCTEXT("DetailsPlaceholder", "Details Panel Goes Here"))
-                        ]
-			        ]
-			    ]
-			    +SSplitter::Slot()
-			    [
-			        SNew(SBorder)
-			        [
-			            SNew(SBox)
-			            .MinDesiredWidth(600.0f)
-                        [
-							SNew(SGraphEditor)
-							.GraphToEdit(SlateMachineGraph)
-							.Appearance(AppearanceInfo)
-                        ]
-			        ]
-			    ]
+				SNew(SBorder)
+				.BorderImage(FAppStyle::GetBrush("ToolPanel.DarkGroupBorder"))
+				[			        
+					SNew(SGraphEditor)
+					.GraphToEdit(SlateMachineGraph)
+					.Appearance(AppearanceInfo)
+				]
+			]
+			+SSplitter::Slot()
+			.Value(0.3f)
+			[
+				SNew(SBorder)
+				.BorderImage(FAppStyle::GetBrush("ToolPanel.DarkGroupBorder"))
+				[
+					SNew(SVerticalBox)
+					+ SVerticalBox::Slot()
+					.FillHeight(1.0f)
+					[
+						SNew(STextBlock)
+						.Justification(ETextJustify::Left)
+						.Text(LOCTEXT("DetailsPlaceholder", "Details Panel Goes Here"))
+					]
+				]
 			]
 		];
 }
@@ -115,7 +110,7 @@ void FSlateMachineModule::RegisterMenus()
 	{
 		UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
 		{
-			FToolMenuSection& Section = Menu->FindOrAddSection("WindowLayout");
+			FToolMenuSection& Section = Menu->FindOrAddSection("LevelEditor");
 			Section.AddMenuEntryWithCommandList(FSlateMachineCommands::Get().OpenPluginWindow, PluginCommands);
 		}
 	}
