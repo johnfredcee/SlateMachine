@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "SlateMachine.h"
+#include "GraphEditor.h"
+#include "SlateMachineEdGraph.h"
 #include "SlateMachineStyle.h"
 #include "SlateMachineCommands.h"
 #include "LevelEditor.h"
@@ -34,6 +36,8 @@ void FSlateMachineModule::StartupModule()
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(SlateMachineTabName, FOnSpawnTab::CreateRaw(this, &FSlateMachineModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("FSlateMachineTabTitle", "SlateMachine"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
+
+	SlateMachineGraph = NewObject<USlateMachineEdGraph>();
 }
 
 void FSlateMachineModule::ShutdownModule()
@@ -54,6 +58,8 @@ void FSlateMachineModule::ShutdownModule()
 
 TSharedRef<SDockTab> FSlateMachineModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
+	FGraphAppearanceInfo AppearanceInfo;
+
 	return SNew(SDockTab)
 		.TabRole(ETabRole::NomadTab)
 		[
@@ -86,8 +92,9 @@ TSharedRef<SDockTab> FSlateMachineModule::OnSpawnPluginTab(const FSpawnTabArgs& 
 			            SNew(SBox)
 			            .MinDesiredWidth(600.0f)
                         [
-                            SNew(STextBlock)
-                            .Text(LOCTEXT("GraphPlaceholder", "Graph Goes Here"))
+							SNew(SGraphEditor)
+							.GraphToEdit(SlateMachineGraph)
+							.Appearance(AppearanceInfo)
                         ]
 			        ]
 			    ]

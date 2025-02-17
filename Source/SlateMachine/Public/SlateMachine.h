@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GraphEditor.h"
 #include "Modules/ModuleManager.h"
+#include "SlateMachineEdGraph.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -21,10 +23,18 @@ public:
 	
 private:
 
+	// the actual graph representing the state machine
+	TObjectPtr<USlateMachineEdGraph> SlateMachineGraph; 
+
+	// Top level graph editor widget
+	TSharedPtr<SGraphEditor> GraphEditor;
+
+	TSharedPtr<class FUICommandList> PluginCommands;
+
+	// Add memnu items to the Level Editor toolbar
 	void RegisterMenus();
 
+	// called when we want to spawn a tabbed window with the graph inside
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
 
-private:
-	TSharedPtr<class FUICommandList> PluginCommands;
 };
