@@ -1,8 +1,8 @@
 ﻿// // Copyright (C) John Connors 2023
 
 
-#include "SlateMachineSchema.h"
 #include "SlateMachineEdGraph.h"
+#include "SlateMachineSchema.h"
 
 #include "GraphEditAction.h"
 

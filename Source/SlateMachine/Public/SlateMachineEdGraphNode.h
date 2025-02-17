@@ -14,4 +14,9 @@ UCLASS()
 class SLATEMACHINE_API USlateMachineEdGraphNode : public UEdGraphNode
 {
     GENERATED_BODY()
+
+    virtual void AllocateDefaultPins() override;
+    virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override;
+	virtual TSharedPtr<SGraphNode> CreateVisualWidget();
+
 };
