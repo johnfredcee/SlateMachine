@@ -4,4 +4,5 @@
 void SSimpleStateGraphNode::Construct(const FArguments& InArgs, USlateMachineEdGraphNode* InNode)
 {
     GraphNode = InNode;   
+    this->UpdateGraphNode();
 }
