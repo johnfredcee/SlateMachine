@@ -23,3 +23,8 @@ TSharedPtr<SGraphNode> USlateMachineEdGraphNode::CreateVisualWidget()
     .Visibility(EVisibility::Visible);
 
 };
+
+void USlateMachineEdGraphNode::SetStateName(FName InName)
+{
+    StateName = InName;
+}
