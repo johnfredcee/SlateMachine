@@ -2,13 +2,15 @@
 
 
 #include "SlateMachineEdGraph.h"
+#include "SimpleStateMachine.h"
 #include "SlateMachineSchema.h"
 
 #include "GraphEditAction.h"
+#include "UObject/UObjectGlobals.h"
 
 #define LOCTEXT_NAMESPACE "SlateMachineGraph"
 
-DEFINE_LOG_CATEGORY_STATIC(LogSlateMachine, Log, All);
+DEFINE_LOG_CATEGORY_STATIC(LogSlateMachine, Verbose, All);
 
 USlateMachineEdGraph::USlateMachineEdGraph() : Super()
 {
@@ -19,6 +21,7 @@ USlateMachineEdGraph::USlateMachineEdGraph() : Super()
 void USlateMachineEdGraph::PostInitProperties()
 {
     Super::PostInitProperties();
+    StateMachine = NewObject<USimpleStateMachine>(this);
 }
 
 void USlateMachineEdGraph::AddNode(UEdGraphNode* NodeToAdd, bool bUserAction, bool bSelectNewNode)

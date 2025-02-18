@@ -1,4 +1,4 @@
-﻿// // Copyright (C) John Connors 2023
+﻿//  Copyright (C) John Connors 2023
 
 #pragma once
 
@@ -18,5 +18,6 @@ class SLATEMACHINE_API USlateMachineEdGraphNode : public UEdGraphNode
     virtual void AllocateDefaultPins() override;
     virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override;
 	virtual TSharedPtr<SGraphNode> CreateVisualWidget();
-
+private:
+    FName StateName;
 };

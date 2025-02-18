@@ -1,6 +1,7 @@
 #include "SimpleSlateMachineGraphNode.h"
+#include "SlateMachineEdGraphNode.h"
 
-void SSimpleStateGraphNode::Construct(const FArguments& InArgs)
+void SSimpleStateGraphNode::Construct(const FArguments& InArgs, USlateMachineEdGraphNode* InNode)
 {
-    
+    GraphNode = InNode;   
 }
