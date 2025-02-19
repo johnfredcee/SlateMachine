@@ -10,8 +10,6 @@
 
 #define LOCTEXT_NAMESPACE "SlateMachineGraph"
 
-DEFINE_LOG_CATEGORY_STATIC(LogSlateMachine, Verbose, All);
-
 USlateMachineEdGraph::USlateMachineEdGraph() : Super()
 {
     Schema = USlateMachineSchema::StaticClass();

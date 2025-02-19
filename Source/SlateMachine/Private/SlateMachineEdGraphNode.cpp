@@ -3,6 +3,12 @@
 #include "SlateMachineEdGraphNode.h"
 #include "SimpleSlateMachineGraphNode.h"
 
+USlateMachineEdGraphNode::USlateMachineEdGraphNode(const FObjectInitializer& ObjInit)
+	: Super(ObjInit)
+{
+	bCanRenameNode = true;
+}
+
 void USlateMachineEdGraphNode::AllocateDefaultPins()
 {
    // Create an input pin for incoming state transitions

@@ -4,13 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GraphEditor.h"
+#include "Logging/LogMacros.h"
+#include "Logging/LogVerbosity.h"
 #include "Modules/ModuleManager.h"
 #include "SlateMachineEdGraph.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
 
-class FSlateMachineModule : public IModuleInterface
+DECLARE_LOG_CATEGORY_EXTERN(LogSlateMachine, Verbose, All);
+
+class FSlateMachineModule : public IModuleInterface, public TSharedFromThis<FSlateMachineModule>
 {
 public:
 
@@ -36,5 +40,10 @@ private:
 
 	// called when we want to spawn a tabbed window with the graph inside
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
+
+	/**
+	 * Called when a node's title is committed for a rename
+	 */
+	 void OnNodeTitleCommitted(const FText& NewText, ETextCommit::Type CommitInfo, UEdGraphNode* NodeBeingChanged);
 
 };

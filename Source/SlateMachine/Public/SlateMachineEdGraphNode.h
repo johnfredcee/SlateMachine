@@ -13,7 +13,7 @@
 UCLASS()
 class SLATEMACHINE_API USlateMachineEdGraphNode : public UEdGraphNode
 {
-    GENERATED_BODY()
+    GENERATED_UCLASS_BODY()
 public:
     virtual void AllocateDefaultPins() override;
     virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override;

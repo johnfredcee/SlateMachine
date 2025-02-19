@@ -6,3 +6,4 @@ void SSimpleStateGraphNode::Construct(const FArguments& InArgs, USlateMachineEdG
     GraphNode = InNode;   
     this->UpdateGraphNode();
 }
+
