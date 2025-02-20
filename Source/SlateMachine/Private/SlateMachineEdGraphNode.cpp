@@ -28,9 +28,9 @@ TSharedPtr<SGraphNode> USlateMachineEdGraphNode::CreateVisualWidget()
     return SNew(SSimpleStateGraphNode, this)
     .Visibility(EVisibility::Visible);
 
-};
+}
 
-void USlateMachineEdGraphNode::SetStateName(FName InName)
+void USlateMachineEdGraphNode::OnRenameNode(const FString& NewName)
 {
-    StateName = InName;
+    StateName = FName(NewName);
 }

@@ -18,7 +18,7 @@ public:
     virtual void AllocateDefaultPins() override;
     virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override;
 	virtual TSharedPtr<SGraphNode> CreateVisualWidget();
-    void SetStateName(FName InName);
+    virtual void OnRenameNode(const FString& NewName) override;
 private:
     FName StateName;
 };

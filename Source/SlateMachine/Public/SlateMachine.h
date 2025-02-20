@@ -45,5 +45,6 @@ private:
 	 * Called when a node's title is committed for a rename
 	 */
 	 void OnNodeTitleCommitted(const FText& NewText, ETextCommit::Type CommitInfo, UEdGraphNode* NodeBeingChanged);
+	 bool OnVerifyNodeTitleCommit(const FText& NewText, UEdGraphNode* NodeBeingChanged, FText& OutErrorMessage);
 
 };
