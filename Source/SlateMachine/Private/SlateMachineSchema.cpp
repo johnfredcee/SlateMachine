@@ -16,7 +16,6 @@ UEdGraphNode* FSlateMachineSchemaAction_NewNode::PerformAction(class UEdGraph* P
     StateMachine->States.Emplace(FName("NewState"), { FName("NewState"), {}});
     FGraphNodeCreator<USlateMachineEdGraphNode> GraphNodeCreator(*SlateMachineGraph);
     USlateMachineEdGraphNode* Result = GraphNodeCreator.CreateNode(false, USlateMachineEdGraphNode::StaticClass());
-    Result->OnRenameNode(TEXT("NewState"));    
     GraphNodeCreator.Finalize();
     Result->NodePosX = Location.X;
     Result->NodePosY = Location.Y;

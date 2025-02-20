@@ -7,6 +7,8 @@ USlateMachineEdGraphNode::USlateMachineEdGraphNode(const FObjectInitializer& Obj
 	: Super(ObjInit)
 {
 	bCanRenameNode = true;
+    FString Title = FString::Printf(TEXT("State%02d"), GetFNameSafe(this).GetNumber());
+    StateName = FName(Title);
 }
 
 void USlateMachineEdGraphNode::AllocateDefaultPins()
