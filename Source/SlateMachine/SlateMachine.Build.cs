@@ -43,7 +43,8 @@ public class SlateMachine : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"GraphEditor"
+				"GraphEditor",
+				"KismetWidgets"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

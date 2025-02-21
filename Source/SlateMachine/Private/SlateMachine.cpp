@@ -4,6 +4,7 @@
 #include "EdGraph/EdGraphNode.h"
 #include "GraphEditor.h"
 #include "Logging/LogMacros.h"
+#include "SSlateMachineGraphDetailsPanel.h"
 #include "ScopedTransaction.h"
 #include "SlateGlobals.h"
 #include "SlateMachineEdGraph.h"
@@ -119,42 +120,41 @@ TSharedRef<SDockTab> FSlateMachineModule::OnSpawnPluginTab(const FSpawnTabArgs& 
 	SGraphEditor::FGraphEditorEvents InEvents;
 	InEvents.OnTextCommitted = FOnNodeTextCommitted::CreateRaw(this, &FSlateMachineModule::OnNodeTitleCommitted);
 	InEvents.OnVerifyTextCommit = FOnNodeVerifyTextCommit::CreateRaw(this, &FSlateMachineModule::OnVerifyNodeTitleCommit);
-	return SNew(SDockTab)
-		.TabRole(ETabRole::NomadTab)
-		[
-			SNew(SSplitter)
-			.PhysicalSplitterHandleSize(10.0f)  
-			.Orientation(EOrientation::Orient_Horizontal)
-			+SSplitter::Slot()
-			.Value(0.7f)
+	return	SNew(SDockTab)
+			.TabRole(ETabRole::NomadTab)
 			[
-				SNew(SBorder)
-				.BorderImage(FAppStyle::GetBrush("ToolPanel.DarkGroupBorder"))
-				[			        
-					SNew(SGraphEditor)
-					.GraphToEdit(SlateMachineGraph)
-					.Appearance(AppearanceInfo)
-					.GraphEvents(InEvents)
-					.IsEditable(true)			
-				]
-			]
-			+SSplitter::Slot()
-			.Value(0.3f)
-			[
-				SNew(SBorder)
-				.BorderImage(FAppStyle::GetBrush("ToolPanel.DarkGroupBorder"))
+				SNew(SSplitter)
+				.PhysicalSplitterHandleSize(10.0f)  
+				.Orientation(EOrientation::Orient_Horizontal)
+				+SSplitter::Slot()
+				.Value(0.7f)
 				[
-					SNew(SVerticalBox)
-					+ SVerticalBox::Slot()
-					.FillHeight(1.0f)
-					[
-						SNew(STextBlock)
-						.Justification(ETextJustify::Left)
-						.Text(LOCTEXT("DetailsPlaceholder", "Details Panel Goes Here"))
+					SNew(SBorder)
+					.BorderImage(FAppStyle::GetBrush("ToolPanel.DarkGroupBorder"))
+					[			        
+						SNew(SGraphEditor)
+						.GraphToEdit(SlateMachineGraph)
+						.Appearance(AppearanceInfo)
+						.GraphEvents(InEvents)
+						.IsEditable(true)			
 					]
 				]
-			]
-		];
+				+SSplitter::Slot()
+				.Value(0.3f)
+				[
+					SNew(SBorder)
+					.BorderImage(FAppStyle::GetBrush("ToolPanel.DarkGroupBorder"))
+					[
+						SNew(SVerticalBox)
+						+ SVerticalBox::Slot()
+						.FillHeight(1.0f)
+						[
+							SAssignNew(GraphDetails, SSlateMachineGraphDetailsPanel, SlateMachineGraph)
+							
+						]
+					]
+				]
+			];
 }
 
 void FSlateMachineModule::PluginButtonClicked()

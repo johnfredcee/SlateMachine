@@ -8,6 +8,7 @@
 #include "Logging/LogVerbosity.h"
 #include "Modules/ModuleManager.h"
 #include "SlateMachineEdGraph.h"
+#include "SSlateMachineGraphDetailsPanel.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -34,6 +35,8 @@ private:
 	TSharedPtr<SGraphEditor> GraphEditor;
 
 	TSharedPtr<class FUICommandList> PluginCommands;
+
+	TSharedPtr<class SSlateMachineGraphDetailsPanel> GraphDetails;
 
 	// Add memnu items to the Level Editor toolbar
 	void RegisterMenus();

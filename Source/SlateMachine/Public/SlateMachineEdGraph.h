@@ -19,7 +19,7 @@ class SLATEMACHINE_API USlateMachineEdGraph : public UEdGraph
     
 public:
     // The actual state machine
-    UPROPERTY()
+    UPROPERTY(VisibleAnywhere)
     TObjectPtr<USimpleStateMachine> StateMachine;
     
     USlateMachineEdGraph();
